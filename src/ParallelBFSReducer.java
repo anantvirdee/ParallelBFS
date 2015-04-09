@@ -11,10 +11,6 @@ public class ParallelBFSReducer extends Reducer<IntWritable, Text, IntWritable, 
 	int distance = Integer.MAX_VALUE;
 	String color = "WHITE";
 	String neighbours;
-	
-	public enum UpdateCounter {
-		  UPDATED
-		 }
 	@Override
 	
 	public void reduce(IntWritable key,Iterable<Text> values,Context context) throws IOException,InterruptedException
@@ -53,7 +49,6 @@ public class ParallelBFSReducer extends Reducer<IntWritable, Text, IntWritable, 
 		color="WHITE";
 		distance=Integer.MAX_VALUE;
 		
-		context.getCounter(UpdateCounter.UPDATED).increment(1);
 	}
 
 }
