@@ -49,7 +49,8 @@ public class ParallelBFSMapper extends Mapper<LongWritable, Text, IntWritable, T
 		    	out.append("GRAY");
 		    	out.append('|');
 		    	context.write(mapKeyOut, new Text(out.toString()));
-		    	
+	    		out.setLength(0);
+
 	    	}
 			
 	    	
@@ -57,6 +58,7 @@ public class ParallelBFSMapper extends Mapper<LongWritable, Text, IntWritable, T
 	    // For nodes with color either BLACK or WHITE
 	    else{
 	    	//context.write(key, value);
+	    	out.setLength(0);
 	    	mapKeyOut.set(Integer.parseInt(split_val[0].substring(0, 1)));
 	    	out.append('|');
 	    	out.append(split_val[1]);

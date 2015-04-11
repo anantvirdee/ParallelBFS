@@ -10,7 +10,9 @@ public class ParallelBFSReducer extends Reducer<IntWritable, Text, IntWritable, 
 	StringBuilder reduce_out	=	new StringBuilder();
 	int distance = Integer.MAX_VALUE;
 	String color = "WHITE";
-	String neighbours;
+	String neighbours="";
+	
+	StringBuilder chk_str = new StringBuilder();
 	@Override
 	
 	public void reduce(IntWritable key,Iterable<Text> values,Context context) throws IOException,InterruptedException
@@ -34,7 +36,8 @@ public class ParallelBFSReducer extends Reducer<IntWritable, Text, IntWritable, 
 				if(split_val[3].equals("GRAY")){
 					color="GRAY";
 				}
-			}			
+			}	
+			
 		 }
 		
 		reduce_out.append('|');
@@ -45,9 +48,12 @@ public class ParallelBFSReducer extends Reducer<IntWritable, Text, IntWritable, 
     	reduce_out.append(color);
     	reduce_out.append('|');
 		context.write(key, new Text(reduce_out.toString()));
-		reduce_out.setLength(0);
+		
+    	
+    	reduce_out.setLength(0);
 		color="WHITE";
 		distance=Integer.MAX_VALUE;
+		neighbours="";
 		
 	}
 
